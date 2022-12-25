@@ -51,7 +51,7 @@ class CoreSpider(scrapy.Spider):
     def start_requests(self):
         locale.setlocale(locale.LC_TIME, self.settings.attributes["LOCALE"].value)
         self.page_range = list(range(1, int(self.settings.attributes["N_PAGES"].value)))
-        self.sections = self.settings.attributes["SECTIONS"].value
+        self.sections = self.settings.attributes["SECTIONS"].value[self.name]
         self.create_urls(self.url_gen, self.sections, self.page_range)
         headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:48.0) Gecko/20100101 Firefox/48.0'}
         for url in self.urls:
